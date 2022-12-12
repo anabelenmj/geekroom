@@ -9,7 +9,7 @@ Como briefing, trata sobre un hotel principalmente gaming donde su parte más de
 * [LinkedIn](www.linkedin.com/in/anabelenmj)
 
 ## Ver ejemplo en vivo 
-- [https://anabelenmj.github.io/geekroom/](https://anabelenmj.github.io/geekroom/) 
+- [Web](https://www.gaussmultimedia.eu/thebest/2022/anabelenmadrid/)
 
 ## Instalación 
 Este proyecto es necesario instalarlo a través de un servidor FTP, ya que son archivos PHP
