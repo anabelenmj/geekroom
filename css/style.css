@@ -1,0 +1,3784 @@
+/* reset */
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ol,ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+img,figure {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+a, a:hover {
+    color: white;
+}
+
+p,h1,h2,h3,h4,h5,h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: initial;
+    font-weight: 400;
+}
+
+p,li, ::placeholder{font-family: 'Rubik'; font-weight: 300; }
+
+/* I C O N S */
+@font-face {
+    font-family: 'icon-hotel';
+    src: url('../fonts/icon-hotel.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+    }
+
+    i {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icon-hotel' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+
+    .icon-flecha:before {
+        content: "\e913";
+    }
+    .icon-calendario:before {
+        content: "\e900";
+    }
+    .icon-cama:before {
+        content: "\e901";
+    }
+    .icon-capacidad:before {
+        content: "\e902";
+    }
+    .icon-circulo:before {
+        content: "\e903";
+    }
+    .icon-cuadrado:before {
+        content: "\e904";
+    }
+    .icon-diversion:before {
+        content: "\e905";
+    }
+    .icon-equis:before {
+        content: "\e906";
+    }
+    .icon-error:before {
+        content: "\e907";
+    }
+    .icon-expo:before {
+        content: "\e908";
+    }
+    .icon-facebook:before {
+        content: "\e909";
+    }
+    .icon-instagram:before {
+        content: "\e90a";
+    }
+    .icon-menu:before {
+        content: "\e90b";
+    }
+    .icon-moneda:before {
+        content: "\e90c";
+    }
+    .icon-plazas:before {
+        content: "\e90d";
+    }
+    .icon-rango-1:before {
+        content: "\e90e";
+    }
+    .icon-rango-2:before {
+        content: "\e90f";
+    }
+    .icon-rango-3:before {
+        content: "\e910";
+    }
+    .icon-triangulo:before {
+        content: "\e911";
+    }
+    .icon-twitter:before {
+        content: "\e912";
+    }
+
+
+
+/* R O O T */
+:root {
+    --rosa-cta: #E41476;
+    --rosa-oscuro: #ac0e58;
+    --rosa-hover: #e23787;
+    --rosa-shadow: #8d0e49;
+    --gris: #414141;
+    --azul: #02C8ED;
+    --azul-focus: #daf9ff;
+    --morado: #8B77CE;
+}
+
+/* A N I M A C I O N E S */
+@keyframes glow {
+    0% {text-shadow: 0 0 0 white; box-shadow: 0 0 0 inset white;}
+    50% {text-shadow: 0 0 10px white; box-shadow: 0 0 5px inset white;}
+    100% {text-shadow: 0 0 0 white; box-shadow: 0 0 0 inset white;}
+}
+
+@keyframes opacity {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes aparecerImg {
+    0% {opacity: 0; transform:translateY(470px) ; width: 0;}
+    100% {opacity: 1; transform: translateY(0); width: 100%;}
+}
+
+@keyframes upDown {
+    0% {top: -20px; opacity: 1;}
+    50% {top: 0; opacity: 1;}
+    100% {top: -20px; opacity: 1;}
+}
+
+
+
+
+/* mi tema */
+
+body {
+    background-color: black;
+    font-family: 'Kanit', 'Rubik', sans-serif;
+    font-size: 16px;
+    color: white;
+    line-height: initial;
+}
+
+/*    C A B E C E R A       */
+
+.cabecera {
+    height: 90px;
+    width: 100%;
+    margin-bottom: 30px;
+    top: 0;
+    z-index: 9999999;
+}
+
+.cabecera__contenido{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    transition:all 0.5s
+}
+
+.cabecera__logo {
+    width: 60px;
+    margin: auto;
+    position: relative;
+    z-index: 99999;
+    transition:all 0.5s
+}
+
+.cabecera__img {
+    display: none;
+}
+
+.cabecera__reducido {
+    width: 60px;
+    margin: auto;
+}
+
+.cabecera__burger {
+    width: 65px;
+    height: 45px;
+    background-color: var(--rosa-cta);
+    border-radius: 30px 0 0 30px;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    padding: 14px;
+    padding-left: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 9999;
+    transition:all 0.5s
+}
+
+.cabecera__burger div {
+    height: 3px;
+    background-color: white;
+    border-radius: 20px;
+    transition: 0.3s ease;
+}
+
+#check {
+    display: none;
+}
+
+#check:checked{
+    overflow: hidden;
+}
+
+#check:checked~.cabecera__nav {
+    display: flex;
+    scroll-behavior: none;
+}
+
+#check:checked~.cabecera__burger {
+    background-color: var(--rosa-oscuro);
+}
+
+#check:checked~.cabecera__burger div:first-child {
+    position: relative;
+    transform: translateY(7px);
+}
+
+#check:checked~.cabecera__burger div:last-child {
+    position: relative;
+    transform: translateY(-7px);
+}
+
+
+.cabecera__nav {
+    background-color: var(--rosa-cta);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.cabecera__menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cabecera__li {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    transition: 0.2s ease;
+}
+
+.active-nav{
+    background-color: var(--rosa-oscuro);
+}
+
+.cabecera__link {
+    display: block;
+    width: auto;
+    padding: 20px;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: white;
+}
+
+.cabecera__reducir{
+    height: 75px;
+    background-color: rgb(0 0 0 / 85%);
+    position: fixed;
+}
+
+.cabecera__reducir .cabecera__contenido{
+    padding: 10px;
+}
+
+.cabecera__reducir .cabecera__logo{
+    width: 40px;
+}
+
+.cabecera__reducir .cabecera__burger{
+    width: 50px;
+    height: 40px;
+    top: 15px;
+    padding: 11px;
+    padding-left: 22px;
+}
+
+
+/*///////////// P O R T A D A ///////////*/
+
+.portada {
+    width: 100%;
+    height: 100vh;
+}
+
+.portada__contenido {
+    width: 100%;
+    height: 100vh;
+}
+
+.portada__video {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.portada__video::after {
+    content: "";
+    width: 98%;
+    height: 95.5%;
+    border: 1px solid white;
+    top: -5px;
+    right: 0;
+    bottom: 14px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+}
+
+.portada__video-fondo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.portada__textos {
+    position: absolute;
+    padding: 20px;
+    bottom: 28px;
+}
+
+.portada__actual {
+    display: inline-block;
+    font-size: 20px;
+    line-height: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 5px 25px;
+    background-color: var(--azul);
+    margin-bottom: 20px;
+}
+
+.portada__contorneado {
+    font-size: 25px;
+    line-height: 26px;
+    text-transform: uppercase;
+    -webkit-text-stroke: .5008px rgb(255, 255, 255);
+    color: transparent;
+    font-weight: 600;
+}
+
+.portada__titulo {
+    font-size: 35px;
+    line-height: 33px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.portada__reservar {
+    width: 250px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 1%;
+}
+
+.portada__boton {
+    display: block;
+    background-color: var(--rosa-cta);
+    border-radius: 50px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white;
+    transition: 0.1s ease;
+}
+
+.portada__boton:hover {
+    background-color: var(--rosa-hover);
+    transform: translateY(5px);
+    box-shadow: 0px 5px 0px var(--rosa-shadow) inset;
+    text-shadow: 0px -2px 0px var(--rosa-shadow);
+}
+
+
+/*///////////// V A L O R E S ///////////*/
+
+.valores {
+    margin-bottom: 30px;
+    position: relative;
+} 
+
+.valores__col-images{
+    margin-top: 25px;
+}
+
+.valores__texto {
+    text-align: center;
+}
+
+.valores__texto-contorneado {
+    font-size: 35px;
+    line-height: 37px;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px rgb(255, 255, 255);
+    color: transparent;
+    font-weight: 600;
+}
+
+.valores__images {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+
+.valores__images-triangle{
+    width: 45%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    margin: auto;
+}
+
+.valores__images-fort, 
+.valores__images-gaming {
+    position: relative;
+}
+
+.valores__images-fort::after,
+.valores__images-gaming::after{
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 65%;
+    height: 65%;
+    border: 1px solid white;
+    transform: rotate(225deg);
+}
+
+.valores__titulo {
+    font-size: 45px;
+    line-height: 45px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.valores__tipo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.valores__tipo i {
+    font-size: 150px;
+}
+
+.valores__titulo-icon {
+    font-size: 25px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.valores__titulo-icon::before {
+    content: "";
+    width: 115%;
+    height: 15px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: -13px;
+    background-color: var(--morado);
+    z-index: -999;
+}
+
+.valores__descriptivo {
+    font-size: 18px;
+    text-align: center;
+}
+
+
+
+/*  H O T E L */
+
+.hotel-portada__separadores{
+    display: flex;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.hotel-portada__separadores i {
+    font-size: 100px;
+    margin-right: 30px;
+}
+
+.hotel-portada .hotel-portada__separadores:last-child{
+    justify-content: flex-end;
+    margin-bottom: 60px;
+}
+
+.hotel-portada__titulo {
+    font-size: 35px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hotel-portada__descripcion{
+    width: 100%;
+    margin-left: 0;
+}
+
+.hotel-portada__img-uno {
+    position: relative;
+    margin-bottom: 10px;
+    height: 400px;
+}
+
+.hotel-portada__img-uno::after{
+    content: "";
+    width: 96%;
+    height: 95%;
+    position: absolute;
+    border: 1px solid white;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.hotel-portada__img-uno img,
+.hotel-portada__img-dos img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.hotel-portada__descripcion{
+    margin-bottom: 30px;
+}
+
+.hotel-portada__img-dos {
+    position: relative;
+    margin-bottom: 10px;
+    height: 400px;
+}
+
+.hotel-portada__img-dos::after{
+    content: "";
+    width: 96%;
+    height: 95%;
+    position: absolute;
+    border: 1px solid white;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.hotel-portada__textos{
+    margin-top: 10px;
+}
+
+.hotel-portada__p{
+    margin-bottom:5px;
+}
+
+
+.hotel-portada__btn {
+    display: block;
+    background-color: var(--rosa-cta);
+    border-radius: 50px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    transition: 0.1s ease;
+
+}
+
+.hotel-portada__btn:hover{
+    background-color: var(--rosa-hover);
+    transform: translateY(5px);
+    box-shadow: 0px 5px 0px var(--rosa-shadow) inset;
+    text-shadow: 0px -2px 0px var(--rosa-shadow);
+}
+
+/*portada - proximas expos*/
+.proximo__exposicion{
+    margin-bottom: 30px;
+}
+
+.proximo__portada{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.proximo__titulo {
+    font-size: 35px;
+    line-height: 38px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.proximo__img{
+    width: 100%;
+    height: 245px;
+    background: url(../img/fondo-crash.jpg) center no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.proximo__img img {
+    position: absolute;
+    bottom: -30px;
+    width: 290px;
+    right: 0;
+    left: 35px;
+    margin: auto;
+}
+
+.proximo .proximo__exposicion:last-child {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.proximo__p-fecha {
+    display: inline;
+    padding: 2px 15px;
+    font-family: 'Kanit';
+    font-size: 1.125rem;
+    font-weight: 500;
+    background-color: var(--morado);
+    border-radius: 10px 10px 0 0;
+}
+
+.proximo .proximo__exposicion:last-child .proximo__fecha{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.proximo__info{
+    padding: 15px;
+    border: 1px solid white;
+}
+
+.proximo__titulo-expo{
+    font-size: 1.5625rem;
+    line-height: 30px;
+}
+
+.proximo__img-shigeru {
+    width: 100%;
+    height: 245px;
+    background: url(../img/fondo-shigeru.jpg) center no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.proximo__img-shigeru  img {
+    position: absolute;
+    width: 215px;
+    bottom: 0;
+}
+
+.proximo__btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5625rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: var(--rosa-cta);
+    border-radius: 50px;
+    padding: 5px 10px;
+    transition: 0.1s ease;
+}
+
+.proximo__btn:hover {
+    background-color: var(--rosa-hover);
+    transform: translateY(5px);
+    box-shadow: 0px 5px 0px var(--rosa-shadow) inset;
+    text-shadow: 0px -2px 0px var(--rosa-shadow);
+}
+
+/* L I S T A   E X P O S I C I O N E S*/
+
+.list-expo__textos{
+    margin-top: -20px;
+    margin-bottom: 60px;
+}
+
+.list-expo__titulo-principal{
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+}
+
+.list-expo__categoria{
+    margin-bottom: 20px;
+}
+
+.list-expo__lista{
+    display: flex;
+    justify-content: center;
+}
+
+.list-expo__li:last-child{
+    margin-right: 0;
+}
+
+.list-expo__li:first-child,
+.list-expo__li:nth-child(2){
+    border-right: 1px solid white;
+}
+
+.list-expo__li a{
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-right: 15px;
+}
+
+.list-expo__li:nth-child(2) a,
+.list-expo__li:last-child a {
+    margin-left: 15px;
+}
+
+.list-expo__li:first-child a,
+.list-expo__li:last-child a {
+    color: var(--gris);
+}
+
+.list-expo__actual-img,
+.list-expo__prox-img,
+.list-expo__pasadas-img{
+    position: relative;
+}
+
+.list-expo__actual{
+    width: 100%;
+    margin-bottom: 60px;
+    margin-top: 35px;
+    position: relative;
+}
+
+.list-expo__actual > div{
+    margin: auto;
+}
+
+.list-expo__actual-img{
+    height: 450px;
+    position: relative;
+    background: url(../img/fondo-exposicion.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.list-expo__actual-img::after{
+    content: "";
+    position: absolute;
+    width: 95%;
+    height: 100%;
+    border: 1px solid white;
+    top: 0;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.list-expo__actual-img > img {
+    position: absolute;
+    bottom: 0;
+    width: 345px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.list-expo__actual-descripcion{
+    width: 100%;
+    padding: 15px;
+    background-color: var(--rosa-cta);
+    position: relative;
+}
+
+.list-expo__actual-titulo {
+    position: absolute;
+    top: -30px;
+    font-size: 35px;
+    font-weight: 600;
+    text-transform: uppercase;
+    -webkit-text-stroke: .5008px rgb(255, 255, 255);
+    color: transparent;
+    letter-spacing: 5px;
+}
+
+.list-expo__actual-info-titulo{
+    line-height: 25px;
+    padding-bottom: 20px;
+    margin-top: 10px;
+    border-bottom: 1px solid white;
+}
+
+.list-expo__actual-info-fecha{
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+
+.list-expo__btnmas {
+    position: absolute;
+    width: 30%;
+    top: -1.5%;
+    right: 5px;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: black;
+    border: 1px solid white;
+    padding: 2px 10px;
+    margin: auto;
+    animation: glow 1.5s ease infinite;
+}
+
+.list-expo__btnmas::first-letter{
+    font-size: 1.5625rem;
+}
+
+
+/*//PROXIMAS//*/
+
+.list-expo__prox{
+    position: relative;
+}
+
+.list-expo__prox-titulo{
+    width: 100%;
+    position: absolute;
+    top: -30px;
+    font-size: 35px;
+    font-weight: 600;
+    text-transform: uppercase;
+    -webkit-text-stroke: .5008px rgb(255, 255, 255);
+    color: transparent;
+    letter-spacing: 5px;
+    z-index: 99;
+}
+
+.list-expo__prox-contenido{
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.list-expo__prox-img{
+    height: 335px;
+    position: relative;
+    background: url(../img/fondo-shigeru.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.list-expo__prox-img> img{
+    position: absolute;
+    bottom: 0;
+    width: 300px;
+    left: 0;
+    right: 35%;
+    margin: auto;
+}
+
+.list-expo__prox-descripcion {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    align-items: flex-end;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 15%, rgba(255,255,255,0) 100%);
+}
+
+.list-expo__prox-info{
+    padding: 15px;
+    width: 100%;
+}
+
+.list-expo__prox-info-titulo{
+    line-height: 25px;
+    padding-bottom: 25px;
+    margin-top: 10px;
+    border-bottom: 1px solid white;
+}
+
+.list-expo__prox-info-fecha{
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+.list-expo__prox-img-dos {
+    height: 335px;
+    position: relative;
+    background: url(../img/fondo-crash.jpg) center no-repeat;
+    background-size: cover;
+}
+
+
+.list-expo__prox-img-dos img {
+    position: absolute;
+    bottom: 0;
+    width: 350px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
+
+/*//PASADAS//*/
+.list-expo__pasadas{
+    margin-top: 50px;
+    position: relative;
+}
+
+.list-expo__pasadas-titulo{
+    width: 100%;
+    position: absolute;
+    top: -30px;
+    text-align: right;
+    font-size: 35px;
+    font-weight: 600;
+    text-transform: uppercase;
+    -webkit-text-stroke: .5008px rgb(255, 255, 255);
+    color: transparent;
+    letter-spacing: 5px;
+    z-index: 99;
+}
+
+.list-expo__pasadas-contenido{
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.list-expo__pasadas-img{
+    height: 335px;
+    background: url(../img/fondo-8bit.jpg) center no-repeat;
+    background-size: cover;
+    transition: 0.5s ease;
+}
+
+.list-expo__pasadas-descripcion {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    align-items: flex-end;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 15%, rgba(255,255,255,0) 100%);
+}
+
+.list-expo__pasadas-info{
+    padding: 15px;
+    width: 100%;
+}
+
+.list-expo__pasadas-info-titulo{
+    line-height: 25px;
+    padding-bottom: 25px;
+    margin-top: 10px;
+    border-bottom: 1px solid white;
+}
+
+.list-expo__pasadas-info-fecha{
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+.list-expo__pasadas-img-dos {
+    height: 335px;
+    position: relative;
+    background: url(../img/fondo-tetsuya.jpg) center no-repeat;
+    background-size: cover;
+}
+
+
+.list-expo__pasadas-img-dos img{
+    position: absolute;
+    bottom: 0;
+    width: 265px;
+    left: 0;
+    right: 36%;
+    margin: auto;
+}
+
+.list-expo__tetsuya{
+    display: none;
+}
+
+
+.list-expo__mas{
+    width: 115px;
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.list-expo__mas-ant{
+    width: 115px;
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.list-expo__palitos{
+    width: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-expo__palitos div{
+    width: 4px;
+    height: 25px;
+    background-color: white;
+    border-radius: 80px;
+}
+
+.list-expo__palitos div:last-child{
+    position: absolute;
+    width: 25px;
+    height: 4px;
+}
+
+
+/* A R T I C U L O  C O N T E N I D O */ 
+.expo{
+    margin-top: -120px;
+}
+
+.expo__portada{
+    overflow: hidden;
+}
+
+.expo__contenido {
+    height: 100vh;
+    position: relative;
+    background: url(../img/fondo-exposicion.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.expo__portada::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: -webkit-radial-gradient(bottom, rgba(1, 1, 1, 1.0), rgb(255 255 255 / 0%));
+    z-index: 2;
+}
+
+.expo__contenido::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: calc(100vw - 30px);
+    height: calc(100vh - 95px);
+    border: 2px solid white;
+    border-bottom: transparent;
+    box-shadow: 0 0 11px 0px var(--azul);
+}
+
+.expo__titulos{
+    height: 25%;
+    position: absolute;
+    top: calc(100vh - 88%);
+    max-width: 85%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    padding: 15px;
+    text-align: center;
+    z-index: 4;
+    opacity: 0;
+    animation: opacity 1s ease 1.5s;
+    animation-fill-mode: forwards;
+}
+
+
+.expo__titulo-uno{
+    font-size: 3rem;
+    line-height: 2.9rem;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: .5008px rgb(255, 255, 255);
+}
+
+.expo__titulo-dos{
+    font-size: 2.8rem;
+    line-height: 2.7rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+
+.expo__contenido img{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 3;
+    animation: aparecerImg 1.5s ease;
+}
+
+.expo__flecha{
+    position: absolute;
+    bottom: calc(100vh - 90%);
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    z-index: 10;
+}
+
+.expo__flecha i{
+    opacity: 0;
+    position: relative;
+    font-size: 45px;
+    animation: upDown 1.5s ease-in-out infinite 1.5s;
+}
+
+/*UNCHARTED*/
+
+.expo__bg-uncharted{
+    height: 350px;
+    background: url(../img/bg-uncharted.jpg) center no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 20px black inset;
+}
+
+.expo__uncharted{
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+.expo__info{
+    margin-bottom: 45px;
+}
+
+.expo__titular{
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.expo__parrafo{
+    line-height: 22px;
+    margin-bottom: 12px;
+}
+
+.expo__uncharted-png{
+    width: 300px;
+    margin: auto;
+}
+
+.expo__slide{
+    position: relative;
+    margin-top: 20px;
+    height: 450px;
+}
+
+.carousel {
+    height: 450px;
+}
+
+.carousel-inner {
+    height: 450px;
+}
+
+.carousel-item {
+    height: 450px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    z-index: 10;
+}
+
+.carousel-control-prev .sr-only,
+.carousel-control-next .sr-only {
+    display: none;
+}
+
+.expo__slide::after{
+    content: "";
+    position: absolute;
+    width: 97%;
+    height: 97%;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 1px solid white;
+    z-index: 1;
+}
+
+.expo__slide .carousel-inner::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 35%);
+}
+
+.expo__slide .carousel-caption{
+    width: 90%;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid white;
+    font-family: rubik;
+    font-weight: 200;
+    font-size: 13px;
+    line-height: 15px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    z-index: 9;
+    margin-bottom: 15px;
+
+}
+
+.expo__nombre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.expo__nombre-uno, 
+.expo__nombre-dos {
+    font-size: 38px;
+    text-transform: uppercase;
+}
+
+.expo__nombre-uno{
+    color: transparent;
+    -webkit-text-stroke: .5008px rgb(255, 255, 255);
+    margin-right: 15px;
+}
+
+/*BRUCE*/
+
+.expo__artista {
+    margin-bottom: 40px;
+}
+
+.expo__artista i {
+    font-size: 25px;
+}
+
+.icon-triangulo{
+    display: block;
+    text-align: center;
+}
+
+.expo__contenido-bruce{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+
+.expo__bruce{
+    display: flex;
+    width: 285px;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 45px;
+    margin: auto;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.expo__bruce-img{
+    width: 200px;
+    margin: auto;
+}
+
+.expo__bruce-jpg{
+    position: relative;
+    height: 265px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.expo__bruce-jpg::after{
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    width: 100%;
+    height: 265px;
+    border: 1px solid white;
+}
+
+
+.expo__bruce-jpg img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.expo__bruce-cargo{
+    font-family: kanit;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+}
+
+.expo__bruce-text{
+    display: none;
+}
+
+.expo__bruce-p{
+    margin-bottom: 15px;
+}
+
+.expo__bruce-text-disp{
+    display: flex;
+    margin-top: 20px;
+}
+
+.expo__leer-mas{
+    display: flex;
+    align-items: center;
+    background: none;
+    color: white;
+    border: none;
+    margin: auto;
+}
+
+.expo__leer-mas i{
+    margin: 0 10px;
+}
+
+
+/*TLOU*/
+
+.expo__bg-tlou{
+    height: 350px;
+    background: url(../img/bg-tlou.jpg) left no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 20px black inset;
+}
+
+.expo__tlou{
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+.expo__tlou-png{
+    display: flex;
+    height: 380px;
+}
+
+.expo__tlou-modelado{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.expo__tlou-modelado img:last-child{
+    width: 95px;
+    right: 0;
+    position: absolute;
+    bottom: 0;
+}
+
+/* WORKSHOP */
+.expo__workshop{
+    margin-bottom: 40px;
+}
+
+.expo__workshop-titulo{
+    font-size: 45px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.expo__martin{
+    margin-bottom: 80px;
+}
+
+.expo__martin-contenido,
+.expo__frank-contenido{
+    margin-bottom: 15px;
+}
+
+.expo__martin-portada,
+.expo__frank-portada{
+    position: relative;
+}
+
+.expo__martin-portada::after,
+.expo__frank-portada::after{
+    content: "";
+    position: absolute;
+    width: 95%;
+    height: 97%;
+    margin: auto;
+    border: 1px solid white;
+    border-bottom: none;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.expo__martin-img,
+.expo__frank-img{
+    height: 250px;
+    position: relative;
+}
+
+.expo__martin-img:after,
+.expo__frank-img:after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);
+}
+
+.expo__martin-img img:first-child,
+.expo__frank-img img:first-child{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.expo__martin-img img:last-child,
+.expo__frank-img img:last-child{
+    position: absolute;
+    bottom: 0;
+}
+
+.expo__martin-img img:last-child{
+    width: 200px;
+    right: 0;
+}
+
+.expo__martin-personal,
+.expo__frank-personal{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.expo__martin-nombre,
+.expo__frank-nombre{
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.expo__martin-cargo,
+.expo__frank-cargo{
+    font-size: 18px;
+}
+
+.expo__martin-info,
+.expo__frank-info{
+    background-color: var(--azul);
+    padding: 15px;
+}
+
+.expo__titulo,
+.expo__titulo{
+    font-size: 23px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.expo__fecha {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.expo__dias{
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.expo__mes{
+    font-size: 18px;
+}
+
+.expo__detalles{
+    width: calc(100vw - 30px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 20px 0;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.expo__detalles i{
+    font-size: 80px;
+}
+
+.expo__plazas{
+    margin-bottom: 30px;
+}
+
+.expo__aforo{
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.expo__plazas p{
+    font-size: 18px;
+}
+
+
+
+.expo__frank-img img:last-child{
+    width: 180px;
+}
+
+
+/* H O T E L */
+
+.hotel__portada {
+    height: 90vh;
+    margin-bottom: 30px;
+}
+
+.hotel__composicion{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.hotel__img-izda {
+    width: 40%;
+    height: 90vh;
+    background: url(../img/hotel-uno.jpg) center no-repeat;
+    background-size: cover;
+    background-blend-mode: hue;
+    position: relative;
+}
+
+.hotel__img-izda::after {
+    content: "";
+    width: 85%;
+    height: 95.5%;
+    top: 0;
+    position: absolute;
+    border: 1px solid white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.hotel__img-rombo{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2;
+
+}
+
+.hotel__img-rombo img{
+    position: relative;
+}
+
+.hotel__rombo{
+    position: relative;
+}
+
+.hotel__rombo::after{
+    content: "";
+    position: absolute;
+    width: 65%;
+    height: 65%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: rotate(45deg);
+    border: 1px solid white;
+}
+
+.hotel__titulo-rombo{
+    top: 43%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    text-align: center;
+    text-shadow: 1px 1px 3px black;
+}
+
+.hotel__img-dcha {
+    width: 40%;
+    height: 90vh;
+    background: url(../img/hotel-dos.jpg) center no-repeat;
+    background-size: cover;
+    background-blend-mode: hue;
+    position: relative;
+}
+
+.hotel__img-dcha::after {
+    content: "";
+    width: 85%;
+    height: 95.5%;
+    top: 0;
+    position: absolute;
+    border: 1px solid white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.hotel__titulo-entrada{
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.hotel__descripcion-entrada{
+    margin-bottom: 20px;
+}
+
+.hotel__p{
+    font-size: 1.125rem;
+    margin-bottom: 10px;
+}
+
+.hotel__tipo-habitacion, 
+.hotel__tipo-habitacion-sr {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.hotel__titulo-habitacion{
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.hotel__portada-img{
+    position: relative;
+}
+
+.hotel__img{
+    position: relative;
+}
+
+.hotel__img i{
+    position: absolute;
+    font-size: 3.5rem;
+    bottom: 10px;
+    right: 20px;
+}
+
+.hotel__img::after{
+    content: "";
+    width: 97%;
+    height: 95%;
+    position: absolute;
+    border: 1px solid white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+}
+
+#check-hotel-uno {
+    display: none;
+}
+
+#check-hotel-uno:checked ~ .hotel__detalles-habitacion{
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+}
+
+#check-hotel-uno:checked ~ .hotel__bola-mas{
+    bottom: -30px;
+    transform: rotate(0deg);
+    transition: transform 0.5s ease-out;
+}
+
+.hotel__bola-mas{
+    width: 30px;
+    height: 30px;
+    background-color: var(--azul);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: rotate(180deg);
+}
+
+.hotel__bola-mas i{
+    font-size: 13px;
+    -webkit-text-stroke: .5008px rgb(255, 255, 255);
+}
+
+.hotel__detalles-habitacion{
+    display: none;
+    margin-top: 25px;
+}
+
+.hotel__descripcion-habitacion {
+    margin-bottom: 10px;
+}
+
+.hotel__capacidad-habitacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+    border-top: 1px solid white;
+}
+
+.hotel__capacidad-habitacion i{
+    font-size: 3.125rem;
+    margin-right: 20px;
+}
+
+.hotel__titulo-capacidad{
+    text-transform: uppercase;
+}
+
+.hotel__capacidad-texto .hotel__p{
+    text-transform: uppercase;
+}
+
+.hotel__tipo-habitacion-sr .hotel__titulo-habitacion {
+    text-align: right;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.hotel__tipo-habitacion-sr i {
+    right: 0;
+    left: 20px;
+}
+
+#check-hotel-dos {
+    display: none;
+}
+
+#check-hotel-dos:checked ~ .hotel__detalles-habitacion{
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+}
+
+#check-hotel-dos:checked ~ .hotel__bola-mas{
+    bottom: -30px;
+    transform: rotate(0deg);
+    transition: transform 0.5s ease-out;
+}
+
+#check-hotel-tres {
+    display: none;
+}
+
+#check-hotel-tres:checked ~ .hotel__detalles-habitacion{
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+}
+
+#check-hotel-tres:checked ~ .hotel__bola-mas{
+    bottom: -30px;
+    transform: rotate(0deg);
+    transition: transform 0.5s ease-out;
+}
+
+.hotel__separador{
+    position: relative;
+    width: 100%;
+    height: 305px;
+    background: url(../img/hall-expo.jpg) center no-repeat;
+    background-size: cover;
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hotel__separador::after{
+    content: "";
+    width: 95%;
+    height: 90%;
+    position: absolute;
+    border: 1px solid white;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+.hotel__separador img{
+    filter: drop-shadow(0px 0px 3px black);
+    width: 35%;
+}
+
+.hotel__restaurante-img{
+    height: 580px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.hotel__restaurante-uno {
+    width: 90%;
+    height: 390px;
+    background: url(../img/restaurante-hotel.jpg) left no-repeat;
+    background-size: cover;
+    position: absolute;
+    right: -15px;
+    /* margin: 0; */
+}
+
+.hotel__restaurante-uno::after {
+    content: "";
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    border: 1px solid white;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.hotel__restaurante-dos {
+    width: 100%;
+    height: 200px;
+    border-radius: 125px;
+    background: url(../img/sala-copas.jpg) center no-repeat;
+    background-size: cover;
+    position: absolute;
+    bottom: 30px;
+    left: -100px;
+}
+
+.hotel__restaurante-dos::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 95%;
+    border: 1px solid white;
+    border-radius: 160px;
+    top: 0;
+    bottom: 0;
+    left: -20px;
+    right: 0;
+    margin: auto;
+}
+
+.hotel__descripcion-restaurante{
+    margin-bottom: 30px;
+}
+
+
+/* R E S E R V A */
+
+.reserva__titulo {
+    font-size: 1.875rem;
+    line-height: 1.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.reserva__tipo {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.reserva__label {
+    font-size: 18px;
+    padding-left: 20px;
+    text-transform: uppercase;
+}
+
+.reserva__label span {
+    background-color: black;
+    padding: 0 5px;
+}
+
+.reserva__input{
+    position: relative;
+}
+
+.reserva__input::after{
+    content: "";
+    position: absolute;
+    width: 102.5%;
+    height: 130%;
+    border: 1px solid #707070;
+    border-radius: 40px;
+    top: 0;
+    bottom: 0;
+    left: -5px;
+    right: 0;
+    margin: auto;
+    z-index: -1;
+}
+
+.reserva__campo {
+    width: 100%;
+    padding: 5px 8px;
+    border-radius: 40px;
+    border: none;
+}
+
+.reserva__campo:focus-visible{
+    outline: none;
+    background-color: var(--azul-focus);
+}
+
+.reserva__campo:focus-visible {
+    border-color: var(--azul);
+}
+
+.reserva__campo input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
+    color: -internal-light-dark(black, white) !important;
+}
+
+.reserva hr {
+    height: 3px;
+    background-color: white;
+    opacity: 1;
+    outline: none;
+    border: none;
+    margin: 40px 0;
+}
+
+.reserva__datos-alojamiento{
+    margin-bottom: 30px;
+}
+
+.reserva__datos-alojamiento input[type="date" i] {
+    flex-direction: row-reverse;
+    padding-left: 0;
+    color: #707070;
+    cursor: text;
+}
+
+.reserva__boton {
+    width: 100%;
+    border-radius: 30px;
+}
+
+.reserva input[type="submit" i] {
+    appearance: auto;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--rosa-cta);
+    font-size: 20px;
+    color: white;
+    padding: 5px 6px;
+    font-weight: 500;
+    border: none;
+    text-transform: uppercase;
+    transition: 0.1s ease;
+}
+
+.reserva input[type="submit" i]:hover {
+    background-color: var(--rosa-hover);
+    transform: translateY(5px);
+    box-shadow: 0px 5px 0px var(--rosa-shadow) inset;
+    text-shadow: 0px -2px 0px var(--rosa-shadow);
+}
+
+
+
+/*/ P I E /*/
+
+.pie {
+    background-color: var(--gris);
+    padding-top: 30px;
+    margin-top: 30px;
+}
+
+.pie__contenido{
+    margin-bottom: 20px;
+}
+
+.pie__contacto,
+.pie__redes,
+.pie__newsletter{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.pie__contacto-descripcion,
+.pie__redes-descripcion,
+.pie__newsletter-descripcion{
+    margin-bottom: 10px;
+}
+
+.pie__contacto-titulo,
+.pie__redes-titulo,
+.pie__newsletter-titulo{
+    font-size: 25px;
+    text-transform: uppercase;
+    line-height: 28px;
+}
+
+.pie__contacto-p,
+.pie__redes-p,
+.pie__newsletter-p{
+    font-size: 18px;
+}
+
+.pie__redes-lista{
+    display: flex;
+    justify-content: center;
+}
+
+.pie__redes-li{
+    margin-right: 30px;
+    font-size: 35px;
+}
+
+.pie__newsletter-info{
+    display: flex;
+    justify-content: center;
+}
+
+.pie__newsletter-info > input:first-child {
+    flex: 1;
+    border: 1px solid white;
+    background-color: var(--gris);
+    color: white;
+}
+
+.pie__newsletter-info > input:first-child:focus {
+    border: 1px solid white;
+    background-color: white;
+    color: var(--gris);
+    box-shadow: none;
+}
+
+.pie__newsletter-info > input:first-child::placeholder {
+    color: white;
+}
+
+.pie__newsletter-info > input:last-child {
+    border: 1px solid white;
+    background-color: var(--rosa-cta);
+    color: white;
+    text-transform: uppercase;
+}
+
+.pie__copy{
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.pie__nav{
+    background-color: black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.pie__menu{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.pie__link{
+    text-transform: uppercase;
+    font-size: 18px;
+    color:white;
+}
+
+
+
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    M E D I A Q U E R I E     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+
+
+/* S M */
+@media (min-width: 500px) {
+    /* EXPOSICION */
+
+    .expo__titulo-uno{
+        font-size: 60px;
+        line-height: 55px;
+        -webkit-text-stroke: 1px rgb(255, 255, 255);
+    }
+
+    .expo__titulo-dos{
+        font-size: 65px;
+        line-height: 62px;
+    }
+}
+
+
+/* T A B L E T*/
+
+@media (min-width: 768px) {
+
+    /*CABECERA*/
+
+    .cabecera__burger{
+        top: 30px;
+    }
+
+    .cabecera__img {
+        display: block;
+    }
+
+    .cabecera__reducido {
+        display: none;
+    }
+
+    .cabecera__logo {
+        width: 190px;
+    }
+
+    .cabecera__li {
+        margin-bottom: 35px;
+    }
+
+    .cabecera__link {
+        font-size: 40px;
+    }
+
+    .cabecera__reducir .cabecera__logo {
+        width: 120px;
+    }
+
+    /*PORTADA*/
+
+    .portada__textos {
+        bottom: 45px;
+    }
+
+    .portada__actual {
+        font-size: 33px;
+        line-height: 30px;
+    }
+
+    .portada__contorneado {
+        font-size: 32px;
+        line-height: 30px;
+    }
+
+    .portada__titulo {
+        font-size: 48px;
+        line-height: 45px;
+    }
+
+    .portada__reservar {
+        width: 390px;
+    }
+
+    .portada__boton {
+        margin: auto;
+    }
+
+
+    /*VALORES*/
+
+    .valores {
+        display: flex;
+    }
+    
+    .valores__row{
+        justify-content: flex-end;
+    }
+
+    .valores__col-images{
+        width: 53%;
+        position: absolute;
+        left: -45px;
+        top: 82px;
+        margin-top: 0;
+    }
+
+    .valores__images {
+        width: 55%;
+        justify-content: normal;
+        flex-direction: column;
+    }
+
+    .valores__images-fort{
+        bottom: -30px;
+    }
+
+    .valores__images-gaming{
+        top: -30px;
+    }
+
+    .valores__images-triangle{
+        transform: rotate(270deg);
+        width: 195px;
+        position: relative;
+        top: 0;
+        left: -70px;
+    }
+
+    .valores__texto {
+        text-align: left;
+    }
+
+    .valores__texto-contorneado {
+        font-size: 45px;
+        line-height: 45px;
+    }
+
+    .valores__titulo {
+        font-size: 50px;
+        line-height: 50px;
+    }
+
+    .valores__tipo {
+        flex: 0 0 50%;
+        margin-bottom: 35px;
+        padding: 20px;
+    }
+
+    .valores__tipo i {
+        font-size: 115px;
+    }
+
+    .valores__titulo-icon::before {
+        content: "";
+        width: 110%;
+        top: 17px;
+        left: -13px;
+        margin: auto;
+    }
+
+    /* H O T E L */
+
+    .hotel-portada__titulo{
+        text-align: right;
+        font-size: 3.125rem;
+    }
+
+    .hotel-portada__img-uno,
+    .hotel-portada__img-dos {
+        height: 260px;
+    }
+
+    .hotel-portada__descripcion{
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
+    .hotel-portada__p{
+        font-size: 18px;
+        margin-bottom:10px;
+    }
+
+    .hotel-portada__btn{
+        width: 100%;
+        border-radius: 50px;
+        text-align: center;
+        margin: auto;
+        margin-bottom: 30px;
+        margin-top: 30px;
+    }
+
+    /*portada - exposiciones*/
+    .proximo__titulo {
+        font-size: 3rem;
+        line-height: 45px;
+        text-align: left;
+    }
+
+    .proximo__portada {
+        flex-direction: row;
+    }
+
+    .proximo__fecha {
+        width: 40px;
+        background-color: var(--morado);
+        border-radius: 0 10px 0 0;
+        position: relative;
+    }
+
+    .proximo__p-fecha {
+        width: 125px;
+        height: 25px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -45px;
+        margin: auto;
+        padding: 0;
+        text-align: center;
+        background: none;
+        transform: rotate(90deg);        
+    }
+
+    .proximo__titulo-expo {
+        font-size: 1.875rem;
+        line-height: 34px;
+        margin-bottom: 20px;
+    }
+
+    .proximo__p {
+        font-size: 1.125rem;
+        margin-bottom: 10px;
+    }
+
+    .proximo .proximo__exposicion:last-child{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .proximo .proximo__exposicion:last-child .proximo__portada{
+        flex-direction: row-reverse;
+    }
+
+    .proximo .proximo__exposicion:last-child .proximo__fecha {
+        border-radius: 25px 0 0 0;
+    }
+
+    .proximo .proximo__exposicion:last-child .proximo__p-fecha {
+        transform: rotate(-90deg);
+    }
+
+    .proximo__btn{
+        margin: auto;
+        width: 280px;
+    }
+
+    /* L I S T A   E X P O S I C I O N E S*/
+
+    .list-expo__titulo-principal{
+        font-size: 60px;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .list-expo__actual{
+        margin-bottom: 90px;
+    }
+
+    .list-expo__actual-img {
+        height: 625px;
+    }
+
+    .list-expo__actual-img > img {
+        width: 490px;
+    }
+
+    .list-expo__actual-titulo {
+        top: -43px;
+        font-size: 50px;
+        -webkit-text-stroke: 1px rgb(255, 255, 255);
+    }
+
+    .list-expo__actual-info-titulo {
+        line-height: 35px;
+        padding-bottom: 35px;
+        margin-top: 25px;
+        font-size: 35px;
+    }
+
+    .list-expo__actual-info-fecha {
+        margin-top: 15px;
+    }
+
+    /*proximas*/
+    .list-expo__prox-titulo {
+        top: -45px;
+        font-size: 50px;
+        -webkit-text-stroke: 1px rgb(255, 255, 255);
+    }
+
+    .list-expo__mas{
+        justify-content: flex-start;
+    }
+
+    /*pasadas*/
+
+    .list-expo__pasadas-titulo {
+        top: -45px;
+        font-size: 50px;
+        -webkit-text-stroke: 1px rgb(255, 255, 255);
+    }    
+
+    .list-expo__pasadas .list-expo__mas {
+        justify-content: right;
+        margin: auto;
+        margin-right: 0;
+    }    
+
+    .list-expo__mas-p {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+
+
+
+    /* A R T I C U L O  C O N T E N I D O */ 
+    @keyframes aparecerImg {
+        0% {opacity: 0; transform:translateY(475px) ; width: 0;}
+        100% {opacity: 1; transform: translateY(0); width: calc(100vh - 40%);}
+    }
+
+    .expo__contenido::after{
+        width: calc(100vw - 60px);
+        box-shadow: 0 0 8px 4px var(--azul);
+    }
+
+    .expo__contenido img{
+        bottom: -55px;
+        width: calc(100vh - 40%);
+    }
+
+    .expo__flecha{
+        position: absolute;
+        bottom: calc(100vh - 95%);
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+        z-index: 10;
+    }
+
+    .expo__flecha i{
+        font-size: 45px;
+    }
+
+    /*uncharted*/
+    .expo__titular {
+        font-size: 35px;
+        line-height: 38px;
+    }
+
+    .expo__uncharted-png {
+        width: 195px;
+        margin: auto;
+    }
+
+    .expo__parrafo {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .expo__datos-interes{
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+    }
+
+    .expo__slide .carousel-caption{
+        font-size: 15px;
+        line-height: 17px;    
+    }
+
+    /*bruce*/
+
+    .expo__artista i {
+        font-size: 35px;
+    }
+
+    .expo__nombre-uno, .expo__nombre-dos {
+        font-size: 50px;
+    }
+
+    .expo__nombre-uno{
+        -webkit-text-stroke: 1px rgb(255, 255, 255);
+        margin-right: 0;
+    }
+
+    .expo__nombre i{
+        margin: 0 40px;
+    }    
+
+    .expo__bruce {
+        width: 85%;
+        height: 370px;
+        padding: 30px;
+        flex-direction: row;
+    }
+
+    .expo__bruce-img {
+        width: auto;
+        margin-right: 20px;
+    }
+
+    .expo__bruce-jpg {
+        width: 172px;
+        height: 265px;
+    }
+
+    .expo__bruce-cargo {
+        font-size: 1rem;
+    }
+
+    .expo__leer-mas{
+        cursor: initial !important;
+    }
+
+    .expo__bruce-p{
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 10px;
+    }
+
+    /* TLOU */
+    .expo__info {
+        position: relative;
+        margin-bottom: 90px;
+    }
+
+    .expo__tlou-historia{
+        margin: auto;
+        margin-top: 90px;
+    }
+
+    .expo__tlou-png {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        justify-content: space-between;
+        z-index: -1;
+    }
+
+    .expo__tlou-png > img:first-child{
+        margin-left: -90px;
+        transform: scale(1.2);
+    }
+
+    .expo__tlou-modelado {
+        width: 110px;
+        align-items: flex-end;
+    }
+
+    .expo__tlou-modelado img:last-child {
+        width: 70px;
+        right: -12px;
+        bottom: -30px;
+    }
+
+    /*workshop*/
+    .expo__workshop-titulo {
+        font-size: 55px;
+        text-align: left;
+    }
+
+    .expo__martin-portada::after,
+    .expo__frank-portada::after {
+        border-bottom: 1px solid white;
+    }
+
+    .expo__martin {
+        position: relative;
+        flex-direction: column;
+        margin-bottom: 80px;
+        align-items: flex-end;
+    }
+
+    .expo__martin-img img:last-child,
+    .expo__frank-img img:last-child {
+        z-index: 2;
+    }
+
+    .expo__martin-contenido{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+
+    .expo__martin-info{
+        position: absolute;
+        left: 0;
+        width: 30%;
+    }
+
+    .expo__martin-personal,
+    .expo__frank-personal {
+        width: 70%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 3;
+    }
+
+    .expo__martin-nombre{
+        text-align: right;
+    }
+
+    .expo__martin-cargo {
+        text-align: left;
+    }
+
+    .expo__detalles {
+        width: auto;
+        margin: 0;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .expo__plazas {
+        margin-bottom: 0;
+    }
+
+    .expo__frank {
+        position: relative;
+    }
+
+    .expo__frank-contenido{
+        display: flex;
+        align-items: center;
+    }
+
+    .expo__frank-info {
+        position: absolute;
+        right: 0;
+        width: 30%;
+    }
+
+    .expo__frank-nombre{
+        text-align: left;
+    }
+
+    .expo__frank-cargo{
+        text-align: right;
+    }
+
+
+    /* H O T E L */
+    .hotel__titulo-rombo{
+        font-size: 2.8125rem;
+    }
+
+    .hotel__titulo-entrada {
+        font-size: 3.4375rem;
+        line-height: 48px;
+    }
+
+    .hotel__p {
+        font-size: 1.25rem;
+        margin-bottom: 15px;
+    }
+
+    .hotel__titulo-habitacion {
+        font-size: 40px;
+    }
+
+    .hotel__tipo-habitacion-sr{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .hotel__tipo-habitacion-sr .hotel__titulo-habitacion {
+        font-size: 40px;
+    }
+
+    .hotel__img i {
+        font-size: 5rem;
+        bottom: 15px;
+        right: 35px;
+    }
+
+    .hotel__tipo-habitacion-sr i {
+        right: 0;
+        left: 35px;
+    }
+
+    .hotel__detalles-habitacion {
+        display: flex;
+        align-items: center;
+    }
+
+    .hotel__descripcion-habitacion {
+        flex: 0 0 60%;
+        margin-bottom: 0;
+        padding-right: 25px;
+        border-right: 1px solid white;
+    }
+
+    .hotel__capacidad-habitacion {
+        flex: 0 0 40%;
+        padding-top: 0;
+        border-top: none;
+        justify-content: flex-start;
+        padding-left: 25px;
+    }
+
+    .hotel__separador{
+        position: relative;
+        width: 100%;
+        height: 315px;
+        background: url(../img/hall-expo.jpg) center no-repeat;
+        background-size: cover;
+        margin: 60px 0;
+    }    
+
+    .hotel__separador::after{
+        content: "";
+        width: 95%;
+        height: 90%;
+        position: absolute;
+        border: 1px solid white;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+    }
+
+    .hotel__separador img {
+        width: 20%;
+    }
+
+    .hotel__restaurante .hotel__titulo-entrada {
+        text-align: right;
+    }
+
+    .hotel__restaurante-img{
+        height: 400px;
+    }
+
+    .hotel__restaurante-uno {
+        width: 600px;
+        right: -40px;
+    }
+
+    .hotel__restaurante-dos {
+        width: 330px;
+        border-radius: 130px;
+        bottom: 10px;
+        left: -25px;
+    }
+
+    .hotel__restaurante-dos::after {
+        width: 95%;
+        left: 0;
+    }
+
+    .hotel__descripcion-restaurante{
+        column-count: 2;
+        column-gap: 45px;
+    }
+
+    /* R E S E R V A */ 
+    .reserva__bg{
+        position: relative;
+        overflow: hidden;
+    }
+
+    .reserva__bg-uno{
+        position: absolute;
+        transform: rotate(150deg);
+        width: 175px;
+        right: -128px;
+        top: 0;
+        z-index: -1;
+    }
+
+    .reserva__bg-dos{
+        position: absolute;
+        transform: rotate(90deg);
+        width: 180px;
+        left: -80px;
+        bottom: 0;
+        z-index: -1;
+    }
+    
+    .reserva__titulo {
+        font-size: 2.5rem;
+        line-height: 2.1875rem;
+        margin-bottom: 30px;
+    }
+
+    .reserva__label {
+        font-size: 1.25rem;
+    }
+
+    .reserva__input::after {
+        width: 101.5%;
+    }
+
+    .reserva__boton {
+        max-width: 350px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+    .reserva input[type="submit" i] {
+        font-size: 1.5625rem;
+    }
+
+    /* P I E */
+
+    .pie__newsletter-info > input:first-child {
+        flex: initial;
+    }
+}
+
+
+
+
+/* E S C R I T O R I O */
+
+@media (min-width: 992px) {
+
+    /*CABECERA*/
+    .cabecera__contenido{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .cabecera__logo {
+        margin: 0;
+    }
+
+    .cabecera__burger {
+        display: none;
+    }
+
+    .cabecera__nav {
+        display: flex;
+        position: static;
+        background-color: transparent;
+        width: auto;
+        height: auto;
+    }
+
+    .cabecera__menu {
+        width: auto;
+        flex-direction: row;
+    }
+
+    .cabecera__li {
+        padding: 0;
+        background-color: transparent;
+        text-align: right;
+        margin-bottom: 0;
+        margin-left: 20px;
+        border: 1px solid transparent;
+        border-radius: 50px;
+    }
+
+    .cabecera__li:hover{
+        background-color: transparent;
+    }
+
+    .cabecera__link {
+        text-align: right;
+        margin-bottom: 0;
+        padding: 5px 20px;
+        border: 1px solid transparent;
+        border-radius: 50px;
+    }
+
+    .cabecera__link:hover {
+        background-color: transparent;
+        border-color: white;
+        box-shadow: 0 0 6px 1px var(--azul);
+        transition: 0.1s ease;
+    }
+
+    .active-nav {
+        border-radius: 50px;
+        background-color: transparent;
+        border-color: white;
+        box-shadow: 0 0 6px 1px var(--azul);
+        transition: 0.1s ease;
+    }
+
+    .cabecera__link {
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .cabecera__link:hover {
+        color: white;
+    }
+
+    .cabecera__reducir {
+        height: 50px;
+    }
+
+    .cabecera__reducir .cabecera__logo {
+        width: 100px;
+    }
+
+    .cabecera__reducir .cabecera__link {
+        font-size: 16px;
+    }
+
+    /*PORTADA*/
+    .portada__contorneado {
+        -webkit-text-stroke: 1px rgb(255, 255, 255);
+    }
+
+    /*VALORES*/
+
+    .valores__col-images {
+        top: 25px;
+        max-width: 540px;
+    }
+
+
+    .valores__tipo i {
+        font-size: 140px;
+    }
+
+    /* H O T E L*/
+    .hotel-portada__img-uno {
+        height: 480px;
+    }
+
+    .hotel-portada__img-dos {
+        height: 480px;
+    }
+
+    /*Proximas exposiciones*/
+
+    .proximo__img img{
+        width: 270px;
+        transition: 0.5s ease;
+    }
+
+    .proximo__portada:hover .proximo__img img {
+        width: 290px;
+    }
+
+    .proximo__img-shigeru img{
+        width: 195px;
+        transition: 0.5s ease;
+    }
+
+    .proximo__portada:hover .proximo__img-shigeru img {
+        width: 215px;
+    }
+
+    
+    /* L I S T A   E X P O S I C I O N E S*/
+
+    .list-expo__actual-img {
+        height: 380px;
+    }
+
+    .list-expo__btnmas {
+        width: 15%;
+        right: 60px;
+    }
+
+    .list-expo__actual-img > img {
+        width: 280px;
+        transition: 0.5s ease;
+    }
+
+
+    .list-expo__actual-img:hover > img{
+        width: 300px;
+    }
+
+    .list-expo__actual-info-titulo {
+        padding-bottom: 25px;
+        margin-top: 15px;
+    }
+
+    .list-expo__actual-info-fecha {
+        margin-top: 10px;
+    }
+
+
+
+    /*prox*/
+    .list-expo__prox-img > img {
+        width: 280px;
+        transition: 0.5s ease;
+    }
+
+    .list-expo__prox-contenido:hover img{
+        width: 300px;
+    }
+
+    .list-expo__prox-img-dos > img {
+        width: 325px;
+        transition: 0.5s ease;
+    }
+
+    .list-expo__prox-contenido:hover .list-expo__prox-img-dos img{
+        width: 350px;
+    }
+
+    .list-expo__prox-descripcion,
+    .list-expo__prox-info-titulo,
+    .list-expo__prox-info-fecha {
+        transition: 0.2s ease;
+    }
+
+    .list-expo__prox-contenido:hover .list-expo__prox-descripcion{
+        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);
+    }
+
+    .list-expo__prox-info-titulo{
+        font-size: 25px;
+    }
+
+    .list-expo__prox-contenido:hover .list-expo__prox-info-titulo {
+        font-size: 22px;
+        line-height: 23px;
+        padding-bottom: 15px;
+    }
+
+    .list-expo__prox-contenido:hover .list-expo__prox-info-fecha {
+        font-size: 14px;
+    }
+
+    /*pasadas*/
+    .list-expo__pasadas-contenido:hover .list-expo__pasadas-img{
+        background-size: 107%;
+        transition: all 0.5s ease;
+    }
+
+    .list-expo__pasadas-img {
+        background-size: 100%;
+    }
+
+    .list-expo__pasadas-img-dos > img {
+        width: 250px;
+        transition: 0.5s ease;
+    }
+
+    .list-expo__pasadas-contenido:hover .list-expo__pasadas-img-dos img{
+        width: 265px;
+    }
+
+
+
+
+    .list-expo__pasadas-descripcion,
+    .list-expo__pasadas-info-titulo,
+    .list-expo__pasadas-info-fecha {
+        transition: 0.2s ease;
+    }
+
+    .list-expo__pasadas-contenido:hover .list-expo__pasadas-descripcion{
+        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%);
+    }
+
+    .list-expo__pasadas-info-titulo{
+        font-size: 25px;
+    }
+
+    .list-expo__pasadas-contenido:hover .list-expo__pasadas-info-titulo {
+        font-size: 22px;
+        line-height: 23px;
+        padding-bottom: 15px;
+    }
+
+    .list-expo__pasadas-contenido:hover .list-expo__pasadas-info-fecha {
+        font-size: 14px;
+    }
+
+
+
+    /* A R T I C U L O  C O N T E N I D O */ 
+    @keyframes aparecerImg {
+        0% {opacity: 0; transform:translateY(475px) ; width: 0;}
+        100% {opacity: 1; transform: translateY(0); width: calc(100vh - 20%);}
+    }
+
+    .expo__titulos {
+        max-width: 50%;
+        top: calc(100vh - 35%);
+        left: calc(100vw - 95%);
+        padding: 15px;
+        text-align: left;
+        margin: 0;
+    }
+
+    .expo__contenido img{
+        bottom: -55px;
+        width: calc(100vh - 20%);
+    }
+
+    .expo__flecha{
+        max-width: 85%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .expo__titular {
+        font-size: 2.4em;
+        line-height: 1em;
+    }
+
+    .expo__parrafo {
+        font-size: 1.3em;
+        line-height: 1.3em;
+    }
+
+    .expo__uncharted-png {
+        width: 22%;
+    }
+
+    .expo__slide {
+        margin-top: 0;
+        height: 585px;
+    }
+
+    .carousel {
+        height: 585px;
+    }
+    
+    .carousel-inner {
+        height: 585px;
+    }
+    
+    .carousel-item {
+        height: 585px;
+    }
+
+
+    .expo__nombre-uno, 
+    .expo__nombre-dos {
+        font-size: 4em;
+    }
+
+    .expo__artista i {
+        font-size: 3em;
+    }
+
+    .expo__contenido-bruce {
+        margin-top: 0;
+    }
+
+    .expo__bruce {
+        height: auto;
+    }
+
+    .expo__bruce-img {
+        margin-right: 30px;
+    }
+
+    .expo__bruce-jpg {
+        width: 245px;
+        height: 300px;
+    }
+
+    .expo__bruce-jpg::after {
+        height: 100%;
+    }
+
+    .expo__bruce-p {
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+
+    .expo__tlou{
+        margin-bottom: 90px;
+    }
+
+    .expo__tlou-modelado {
+        width: 165px;
+    }
+
+    .expo__tlou-modelado img:last-child {
+        width: 105px;
+    }
+
+    .expo__workshop-titulo {
+        font-size: 4.2em;
+    }
+
+    .expo__martin-img,
+    .expo__frank-img {
+        height: auto;
+    }
+
+    .expo__martin-img img:last-child {
+        width: 245px;
+    }
+
+    .expo__frank-img img:last-child {
+        width: 220px;
+    }
+
+    .expo__martin-portada::after, 
+    .expo__frank-portada::after {
+        width: 100%;
+        height: 100%;
+        left: 15px;
+        top: 15px;
+    }
+
+    .expo__martin-personal,
+    .expo__frank-personal {
+        width: 50%;
+    }
+
+    .expo__martin-nombre, 
+    .expo__frank-nombre {
+        font-size: 1.875rem;
+        font-weight: 400;
+    }
+
+    .expo__martin-cargo,
+    .expo__frank-cargo {
+        font-size: 1.25rem;
+    }
+
+    .expo__titulo {
+        font-size: 1.75rem;
+        line-height: 1.875rem;
+    }
+
+    .expo__martin-contenido, 
+    .expo__frank-contenido {
+        margin-bottom: 40px;
+    }
+
+
+    /* H O T E L */
+
+    .hotel__restaurante-img {
+        height: 440px;
+    }
+
+    .hotel__restaurante-uno {
+        width: 700px;
+        height: 430px;
+        right: 0;
+    }
+
+    .hotel__restaurante-dos {
+        width: 390px;
+        height: 250px;
+        left: 0;
+    }
+
+    /* R E S E R V A */
+    .reserva__bg-uno {
+        width: 168px;
+        right: -66px;
+    }
+
+    .reserva__datos-personales{
+        margin: auto;
+    }
+
+    .reserva__datos-alojamiento{
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .reserva__input::after {
+        width: 101.2%;
+    }
+
+    .reserva__bg-dos {
+        width: 165px;
+        left: -20px;
+    }
+
+    /* F O O T E R */
+    .pie__contenido{
+        display: flex;
+    }
+    
+    .pie__contacto,
+    .pie__redes,
+    .pie__newsletter{
+        flex: 1;
+        margin-bottom: 10px;
+        padding: 15px;
+    }
+
+    .pie__contacto,
+    .pie__redes{
+        border-right: 1px solid white;
+    }
+
+}
+
+/*XL*/
+@media (min-width: 1200px) {
+    /*CABECERA*/
+    .cabecera__reducir {
+        height: 65px;
+    }
+
+    .cabecera__reducir .cabecera__logo {
+        width: 130px;
+    }
+
+    .cabecera__reducir .cabecera__link {
+        font-size: 18px;
+    }
+
+    /*PORTADA*/
+    .portada__textos {
+        width: 55%;
+        left: 3%;
+    }
+
+    .portada__actual {
+        font-size: 55px;
+        line-height: 50px;
+    }
+
+    .portada__contorneado {
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .portada__titulo {
+        font-size: 60px;
+        line-height: 58px;
+    }
+
+    .portada__boton {
+        font-size: 40px;
+    }
+
+
+    /*VALORES*/
+    .valores__texto-contorneado {
+        transform: translateX(-80px);
+        font-size: 70px;
+        line-height: 75px;
+    }
+
+    .valores__col-images{
+        left: -90px;
+        width: 45%;
+        top: 50px;
+        max-width: 600px;
+    }
+
+    .valores__images-triangle {
+        width: 225px;
+    }
+
+    .valores__titulo {
+        font-size: 70px;
+        line-height: 50px;
+    }
+
+    .valores__titulo-icon {
+        font-size: 30px;
+    }
+
+    .valores__descriptivo {
+        font-size: 20px;
+    }
+
+    /* H O T E L */
+    .hotel-portada__separadores i {
+        font-size: 150px;
+        margin-right: 50px;
+    }
+
+    .hotel-portada__titulo{
+        font-size: 70px;
+    }
+
+    .hotel-portada__p{
+        font-size: 22px;
+    }
+
+    .hotel-portada__btn {
+        font-size: 30px;
+    }
+
+    /*portada-expos*/
+    .proximo__titulo {
+        font-size: 4.375rem;        
+        line-height: 80px;
+        margin-bottom: 25px;
+    }
+
+    .proximo__exposicion {
+        margin-bottom: 50px;
+    }
+
+    .proximo__img,
+    .proximo__img-shigeru {
+        height: 395px;
+    }
+
+    .proximo__img img{
+        width: 400px;
+        transition: 0.5s ease;
+    }
+
+    .proximo__portada:hover .proximo__img img {
+        width: 450px;
+    }
+
+    .proximo__fecha {
+        border-radius: 0 25px 0 0;
+    }
+
+    .proximo__fecha {
+        width: 50px;
+    }
+
+    .proximo__p-fecha {
+        font-size: 24px;
+        width: 195px;
+        height: 25px;
+        right: -80px;
+    }
+
+
+    .proximo__img-shigeru img{
+        width: 300px;
+        transition: 0.5s ease;
+    }
+
+    .proximo__portada:hover .proximo__img-shigeru img {
+        width: 340px;
+    }
+
+    .proximo .proximo__exposicion:last-child .proximo__p-fecha{
+        right: -70px;
+    }
+
+    .proximo__titulo-expo {
+        font-size: 2.625rem;
+        line-height: 40px;
+    }
+
+    .proximo__p {
+        font-size: 1.375rem;
+        margin-bottom: 10px;
+    }
+
+    /* L I S T A   E X P O S I C I O N E S*/
+
+    .list-expo__actual-img {
+        height: 480px;
+    }
+
+    .list-expo__actual-img > img{
+        width: 335px;
+    }
+
+    .list-expo__actual-img:hover > img{
+        width: 385px;
+    }
+
+    /* A R T I C U L O*/
+    @keyframes aparecerImg {
+        0% {opacity: 0; transform:translateY(475px) ; width: 0;}
+        100% {opacity: 1; transform: translateY(0); width: calc(100vh - 17%);}
+    }
+
+    .expo__titulos {
+        max-width: 60%;
+        top: calc(100vh - 45%);
+    }
+
+    .expo__titulo-uno{
+        font-size: 5rem;
+        line-height: 4.9rem;
+    }
+
+    .expo__titulo-dos{
+        font-size: 5.3rem;
+        line-height: 5rem;
+    }
+
+    .expo__contenido img {
+        width: calc(100vh - 17%);
+    }
+
+    .expo__bg-uncharted {
+        height: 455px;
+    }
+
+    .expo__titular {
+        font-size: 2.7rem;
+        line-height: 3rem;
+    }
+
+    .expo__text-img{
+        align-items: center;
+    }
+
+    .expo__parrafo {
+        font-size: 1.4em;
+        line-height: 1.4em;
+    }
+
+    .expo__artista {
+        margin-top: 90px;
+        margin-bottom: 90px;
+    }
+
+    .expo__martin-img img:last-child {
+        width: 35%;
+    }
+
+    .expo__frank-img img:last-child {
+        width: 30%;
+    }
+
+    /* H O T E L */
+    .hotel__titulo-rombo {
+        font-size: 3.1rem;
+    }
+
+    .hotel__titulo-entrada {
+        font-size: 4.2em;
+        line-height: 3.75rem;
+    }
+
+    .hotel__p {
+        font-size: 1.4em;
+        line-height: 1.4em;
+        margin-bottom: 15px;
+    }
+
+    .hotel__titulo-habitacion {
+        /* font-size: 3.125rem; */
+        font-size: 2.7rem;
+        line-height: 3rem;
+        margin-bottom: 10px;
+    }
+
+    .hotel__tipo-habitacion-sr .hotel__titulo-habitacion {
+        font-size: 2.7rem;
+        line-height: 3rem;
+        margin-bottom: 10px;
+    }
+
+    .hotel__img i {
+        font-size: 6.5rem;
+        bottom: 15px;
+        right: 35px;
+    }
+
+    .hotel__capacidad-habitacion i {
+        font-size: 4.2rem;
+        margin-right: 20px;
+    }
+
+    .hotel__titulo-capacidad {
+        font-size: 1.5625rem;
+    }
+
+    .hotel__separador img {
+        width: 200px;
+    }
+
+    .hotel__restaurante-uno {
+    width: 75%;
+    height: 100%;
+    }
+
+    .hotel__restaurante-dos {
+        width: 385px;
+        height: 250px;
+        left: 0;
+        bottom: 0;
+    }
+
+    /*R E S E R V A */
+    .reserva__input::after {
+        width: 101.3%;
+    }
+}
+
+
+
+
+/*XXL*/
+@media (min-width: 1400px) {
+    /*portada*/
+    .portada__textos {
+        width: 60%;
+        bottom: 110px;
+        left: 8%;
+    }
+
+    .portada__actual {
+        font-size: 80px;
+        line-height: 90px;
+    }
+
+    .portada__contorneado {
+        font-size: 50px;
+        line-height: 50px;
+    }
+
+    .portada__titulo {
+        font-size: 75px;
+        line-height: 70px;
+    }
+
+    /*valores*/
+    .valores__col-images{
+        left: -70px;
+        width: 39%;
+        top: 35px;
+        max-width: 635px;
+    }
+
+
+    /*E X P O  C O N T E N I D O*/
+
+    @keyframes aparecerImg {
+        0% {opacity: 0; transform:translateY(475px) ; width: 0;}
+        100% {opacity: 1; transform: translateY(0); width: calc(100vh - 15%);}
+    }
+
+    .expo__contenido img {
+        width: calc(100vh - 15%);
+    }
+
+    .expo__titulos {
+        max-width: 45%;
+    }
+
+    .expo__titulo-uno {
+        font-size: 5rem;
+    }
+
+    .expo__titulo-dos {
+        font-size: 5rem;
+        line-height: 4.2rem;
+    }
+
+    .expo__bg-uncharted {
+        background-position-y: 30%;
+    }
+
+    .expo__tlou-png > img:first-child {
+        margin-left: 0;
+        transform: scale(1.5);
+    }
+
+
+    /*RESERVA*/
+    .reserva__bg-uno {
+        width: 210px;
+        top: 10px;
+    }
+
+    .reserva__bg-dos {
+    width: 210px;
+    left: -55px;
+    }
+}
